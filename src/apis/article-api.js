@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const BASE_URL = "http://localhost:8080/api";
+import { BASE_URL } from "./url";
 
 const getArticleList = () => {
     const url = "/articles";
@@ -43,7 +42,6 @@ const createArticle = (article) => {
 }
 
 export {
-    BASE_URL,
     getArticleList,
     getArticle,
     deleteArticle,
