@@ -16,21 +16,30 @@ const article = ref({
 })
 
 onMounted(async () => {
-    article.value = await getArticle(articleId.value);
-    article.value.createdDateTime = dateTimeFormat(article.value.createdDateTime);
-    article.value.updatedDateTime = dateTimeFormat(article.value.updatedDateTime);
-    console.log(article.value);
+    getArticle(
+        articleId.value,
+        ({data})=>{
+            article.value = data;
+            article.value.createdDateTime = dateTimeFormat(article.value.createdDateTime);
+            article.value.updatedDateTime = dateTimeFormat(article.value.updatedDateTime);
+            console.log(article.value);
+        },
+        (error)=>alert(error)
+    )
 })
 
-const onDeleteArticle = async (id) => {
-    const res = await deleteArticle(id);
-    if (res.status == 200) {
-        alert('삭제가 완료되었습니다.');
-        router.push({ name: "list" });
-    } else {
-        alert('삭제가 완료되지 않았습니다.');
-        router.push({ name: "detail", params: { id } });
-    }
+const onDeleteArticle =  (id) => {
+    deleteArticle(
+        id,
+        ()=>{
+            alert('삭제가 완료되었습니다.');
+            router.push({ name: "list" });
+        },
+        (error)=>{
+            alert('삭제가 완료되지 않았습니다. : ' + error);
+            router.push({ name: "detail", params: { id } });
+        }
+    )
 }
 
 const onMoveModifyArticle = async (id) => {

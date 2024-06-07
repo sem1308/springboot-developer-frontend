@@ -19,22 +19,34 @@ const article = ref({
 
 onMounted(async () => {
     if (articleId.value) {
-        article.value = await getArticle(articleId.value);
-        console.log(article.value);
+        getArticle(
+            articleId.value,
+            ({data})=>{
+                article.value = data;
+                console.log(article.value);
+            }
+        )
     }
 })
 
 const onModifyArticle = async (article) => {
-    await updateArticle(article);
-    router.push({ name: "detail", params: { id: article.id } });
+    updateArticle(
+        article,
+        ()=>router.push({ name: "detail", params: { id: article.id } }),
+        (error)=>alert(error)               
+    );
 }
 
 const onCreateArticle = async (article) => {
-    const createdArticle = await createArticle(article);
-    router.push({ name: "detail", params: { id: createdArticle.id } });
+    createArticle(
+        article,
+        ({data})=> {
+            const createdArticle = data;
+            router.push({ name: "detail", params: { id: createdArticle.id } });
+        },
+        (error)=>alert(error)               
+    );
 }
-
-
 </script>
 
 <template>

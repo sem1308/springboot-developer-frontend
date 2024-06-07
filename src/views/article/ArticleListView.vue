@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getArticleList } from '@/apis/article-api';
-
 // let id = 0;
 
 const articles = ref([
@@ -38,8 +37,13 @@ const articles = ref([
 ])
 
 onMounted(async () => {
-    articles.value = await getArticleList();
-    console.log(articles.value);
+    getArticleList(
+        ({data})=>{
+            articles.value = data 
+            console.log(articles.value);
+        },
+        (error) => alert(error)
+    );
 })
 
 </script>
