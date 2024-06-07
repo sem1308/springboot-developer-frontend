@@ -18,6 +18,10 @@ const onLogin = async () => {
     }
 }
 
+const onLoginOAuth = async () => {
+    window.location.href = `http://localhost:8080/oauth2/authorization/google`;
+}
+
 </script>
 
 <template>
@@ -44,6 +48,12 @@ const onLogin = async () => {
 
                             <button type="button" class="btn btn-secondary mt-3"
                                 onclick="location.href='/users/signup'">회원가입</button>
+                        </div>
+                        <hr>
+                        <div class="mb-2">
+                            <button @click="onLoginOAuth">
+                                <img src="/src/img/google.png">
+                            </button>  
                         </div>
                     </div>
                 </div>
