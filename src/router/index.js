@@ -4,6 +4,7 @@ import ArticleDetailView from '../views/article/ArticleDetailView.vue'
 import ArticleCreateView from '@/views/article/ArticleCreateView.vue'
 import UserSignUpView from '@/views/user/UserSignUpView.vue'
 import UserLoginView from '@/views/user/UserLoginView.vue'
+import AuthHandler from '@/components/AuthHandler.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,6 +38,11 @@ const router = createRouter({
             path: '/users/login',
             name: 'login',
             component: UserLoginView
+        },
+        {
+            path: '/auth/handle',
+            name: 'auth-handler',
+            component: AuthHandler
         },
     ]
 })
