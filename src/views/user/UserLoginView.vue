@@ -10,15 +10,17 @@ const user = ref({
     password: ""
 })
 
-const onLogin = async () => {
-    const response = await login(user.value);
-
-    if (response.status == 200) {
-        router.push({ name: "/" });
-    }
+const onLogin = () => {
+    login(
+        user.value,
+        ()=>{
+            router.push({ name: "list" });
+        },
+        (error)=>alert(error)
+    );
 }
 
-const onLoginOAuth = async () => {
+const onLoginOAuth = () => {
     window.location.href = `http://localhost:8080/oauth2/authorization/google`;
 }
 
@@ -34,14 +36,14 @@ const onLoginOAuth = async () => {
                         <p class="text-white-50 mt-2 mb-5">서비스를 사용하려면 로그인을 해주세요!</p>
 
                         <div class="mb-2">
-                            <form @submit.prevent="onLogin()">
+                            <form @submit.prevent="onLogin">
                                 <div class="mb-3">
                                     <label class="form-label text-white">Email address</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" v-model="user.email">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-white">Password</label>
-                                    <input type="password" class="form-control" name="password">
+                                    <input type="password" class="form-control" v-model="user.password">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>

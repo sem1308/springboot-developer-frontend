@@ -11,11 +11,12 @@ const user = ref({
 })
 
 const onCreateUser = async () => {
-    const id = await createUser(user.value);
-
-    if (id) {
-        router.push({ name: "login" });
-    }
+    createUser(
+        user.value,
+        ()=>{
+            router.push({ name: "login" });
+        }
+    );
 }
 
 </script>
