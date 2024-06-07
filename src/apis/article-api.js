@@ -1,44 +1,43 @@
-import axios from "axios";
-import { BASE_URL } from "./url";
+import axios from '@/apis'
 
-const getArticleList = () => {
+const getArticleList = (success, fail) => {
     const url = "/articles";
     return axios
-        .get(BASE_URL + url)
-        .then((response) => response.data)
-        .catch((error) => error)
+        .get(url)
+        .then(success)
+        .catch(fail)
 }
 
-const getArticle = (id) => {
+const getArticle = (id,success, fail) => {
     const url = `/articles/${id}`;
     return axios
-        .get(BASE_URL + url)
-        .then((response) => response.data)
-        .catch((error) => error)
+        .get(url)
+        .then(success)
+        .catch(fail)
 }
 
-const deleteArticle = (id) => {
+const deleteArticle = (id,success, fail) => {
     const url = `/articles/${id}`;
     return axios
-        .delete(BASE_URL + url)
-        .then((response) => response)
-        .catch((error) => error)
+        .delete(url)
+        .then(success)
+        .catch(fail)
 }
 
-const updateArticle = (article) => {
+const updateArticle = (article,success, fail) => {
     const url = `/articles/${article.id}`;
     return axios
-        .patch(BASE_URL + url, article)
-        .then((response) => response.data)
-        .catch((error) => error)
+        .patch(url, article)
+        .then(success)
+        .catch(fail)
 }
 
-const createArticle = (article) => {
+const createArticle = (article,success, fail) => {
     const url = `/articles`;
     return axios
-        .post(BASE_URL + url, article)
-        .then((response) => response.data)
-        .catch((error) => error)
+        .post(url, article)
+        .then(success)
+        .catch(fail)
 }
 
 export {

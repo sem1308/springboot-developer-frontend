@@ -1,20 +1,19 @@
-import axios from "axios";
-import { BASE_URL } from "./url";
+import api from "@/apis";
 
-const createUser = (user) => {
+const createUser = (user,success,fail) => {
     const url = `/users`;
-    return axios
-        .post(BASE_URL + url, user)
-        .then((response) => response.data)
-        .catch((error) => error)
+    return api
+        .post(url, user)
+        .then(success)
+        .catch(fail)
 }
 
-const login = (user) => {
+const login = (user,success,fail) => {
     const url = `/users/login`;
-    return axios
-        .post(BASE_URL + url, user)
-        .then((response) => response)
-        .catch((error) => error)
+    return api
+        .post(url, user)
+        .then(success)
+        .catch(fail)
 }
 
 export {
