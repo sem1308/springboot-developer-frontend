@@ -14,9 +14,9 @@ const login = (user, success, fail) => {
         .catch(fail)
 }
 
-const logout = (user, success, fail) => {
+const logout = (success, fail) => {
     const url = `/auth/logout`;
-    api.post(url, user)
+    api.get(url, { withCredentials: true })
         .then(success)
         .catch(fail)
 }
