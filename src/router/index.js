@@ -41,7 +41,7 @@ const router = createRouter({
         },
         {
             path: '/auth/handle',
-            name: 'auth-handler',
+            name: 'auth-handle',
             component: AuthHandler
         },
     ]

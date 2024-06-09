@@ -10,16 +10,20 @@ const user = ref({
     password: ""
 })
 
+// 일반 로그인
 const onLogin = () => {
     login(
         user.value,
-        ()=>{
-            router.push({ name: "list" });
+        ({ data }) => {
+            localStorage.setItem("access_token", data.accessToken)
+            console.log("oauth success")
+            router.push({ name: 'list' })
         },
-        (error)=>alert(error)
+        (error) => alert(error)
     );
 }
 
+// OAuth2 로그인
 const onLoginOAuth = () => {
     window.location.href = `http://localhost:8080/oauth2/authorization/google`;
 }
@@ -55,7 +59,7 @@ const onLoginOAuth = () => {
                         <div class="mb-2">
                             <button @click="onLoginOAuth">
                                 <img src="/src/img/google.png">
-                            </button>  
+                            </button>
                         </div>
                     </div>
                 </div>
