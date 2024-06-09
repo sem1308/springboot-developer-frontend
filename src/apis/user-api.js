@@ -9,7 +9,7 @@ const createUser = (user, success, fail) => {
 
 const login = (user, success, fail) => {
     const url = `/auth/login`;
-    api.post(url, user)
+    api.post(url, user, { withCredentials: true })
         .then(success)
         .catch(fail)
 }
