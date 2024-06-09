@@ -15,7 +15,7 @@ const onLogin = () => {
     login(
         user.value,
         ({ data }) => {
-            router.push({ name: 'list', query: { token: data.accessToken } })
+            router.push({ name: 'auth-handle', query: { token: data.accessToken } })
         },
         (error) => alert(error)
     );
