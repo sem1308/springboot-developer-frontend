@@ -1,7 +1,10 @@
 <script setup>
-import { ref } from 'vue';
 
-const token = ref(localStorage.getItem('access_token'))
+const token = localStorage.getItem('access_token')
+
+const logout = () => {
+    localStorage.removeItem("access_token")
+}
 
 </script>
 
@@ -13,7 +16,7 @@ const token = ref(localStorage.getItem('access_token'))
         <h4 class="mb-3">블로그에 오신 것을 환영합니다.</h4>
     </div>
     <router-link v-show="!token" class="btn btn-primary text-white" :to="{ name: 'login' }">로그인</router-link>
-    <button v-show="token" class="btn btn-secondary text-white">로그아웃</button>
+    <button v-show="token" @click="logout" class="btn btn-secondary text-white">로그아웃</button>
 </template>
 
 <style scoped>

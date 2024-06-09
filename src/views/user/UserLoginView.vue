@@ -15,9 +15,7 @@ const onLogin = () => {
     login(
         user.value,
         ({ data }) => {
-            localStorage.setItem("access_token", data.accessToken)
-            console.log("oauth success")
-            router.push({ name: 'list' })
+            router.push({ name: 'list', query: { token: data.accessToken } })
         },
         (error) => alert(error)
     );
