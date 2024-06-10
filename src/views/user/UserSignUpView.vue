@@ -7,13 +7,14 @@ const router = useRouter();
 
 const user = ref({
     email: "",
+    nickname: "",
     password: ""
 })
 
 const onCreateUser = async () => {
     createUser(
         user.value,
-        ()=>{
+        () => {
             router.push({ name: "login" });
         }
     );
@@ -35,8 +36,14 @@ const onCreateUser = async () => {
                                 <!-- 토큰을 추가하여 CSRF 공격 방지 -->
                                 <input type="hidden" />
                                 <div class="mb-3">
-                                    <label class="form-label text-white">Email address</label>
-                                    <input type="email" class="form-control" v-model="user.email" />
+                                    <div class="mb-3">
+                                        <label class="form-label text-white">Email address</label>
+                                        <input type="email" class="form-control" v-model="user.email" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label text-white">Nickname</label>
+                                        <input type="text" class="form-control" v-model="user.nickname" />
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label text-white">Password</label>
                                         <input type="password" class="form-control" v-model="user.password">
